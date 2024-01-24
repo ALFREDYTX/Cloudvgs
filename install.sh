@@ -33,7 +33,7 @@ sudo apt install --assume-yes openjdk-16-jre
 sudo apt install --assume-yes openjdk-11-jre
 sudo apt install --assume-yes lib32z1
 sudo apt install --assume-yes libcurl4-gnutls-dev:i386
-sudo apt install  libmariadb3
+sudo apt install  --assume-yes libmariadb3
 sudo apt-get install --assume-yes build-essential cmake git libjson-c-dev libwebsockets-dev
 
 # Clona el repositorio ttyd y compila e instala
