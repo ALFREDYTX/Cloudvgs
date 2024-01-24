@@ -1,8 +1,10 @@
 # inicializa install de linuxgsm
-./"$1" install
+./"$USER" install
 
 # Descarga el script start_console.sh
 wget https://raw.githubusercontent.com/ALFREDYTX/Cloudvgs/main/start_console.sh
+wget https://raw.githubusercontent.com/ALFREDYTX/Cloudvgs/main/start_ttyd.sh
+chmod +x start.ttyd.sh
 
 # Cambia al directorio lgsm/modules
 cd lgsm/modules || exit 1
@@ -23,5 +25,4 @@ chmod +x command_console.sh || exit 1
 cd || exit 1
 
 # Ejecuta ttyd con el script start_console.sh
-ttyd -W bash -e ./start_console.sh "$1"
-fi
+./start.ttyd.sh
