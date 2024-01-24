@@ -1,40 +1,40 @@
 #!/bin/bash
 
 # Actualiza el sistema
-apt update && apt -y upgrade
+apt --assume-yes update && apt --assume-yes upgrade
 
 # Instala los paquetes necesarios
 sudo add-apt-repository multiverse
 sudo dpkg --add-architecture i386;
 sudo apt update
-sudo apt install -y curl
-sudo apt install -y wget
-sudo apt install -y file
-sudo apt install -y tar
-sudo apt install -y bzip2
-sudo apt install -y gzip
-sudo apt install -y unzip
-sudo apt install -y bsdmainutils
-sudo apt install -y python3
-sudo apt install -y util-linux
-sudo apt install -y ca-certificates
-sudo apt install -y binutils
-sudo apt install -y bc
-sudo apt install -y jq
-sudo apt install -y tmux
-sudo apt install -y netcat
-sudo apt install -y lib32gcc-s1
-sudo apt install -y lib32stdc++6
-sudo apt install -y libsdl2-2.0-0:i386
-sudo apt install -y steamcmd
-sudo apt install -y libtinfo5:i386
-sudo apt install -y openjdk-17-jre
-sudo apt install -y openjdk-16-jre
-sudo apt install -y openjdk-11-jre
-sudo apt install -y lib32z1
-sudo apt install -y libcurl4-gnutls-dev:i386
-sudo apt install -y libmariadb3
-sudo apt-get install -y build-essential cmake git libjson-c-dev libwebsockets-dev
+sudo apt install --assume-yes curl
+sudo apt install --assume-yes wget
+sudo apt install --assume-yes file
+sudo apt install --assume-yes tar
+sudo apt install --assume-yes bzip2
+sudo apt install --assume-yes gzip
+sudo apt install --assume-yes unzip
+sudo apt install --assume-yes bsdmainutils
+sudo apt install --assume-yes python3
+sudo apt install --assume-yes util-linux
+sudo apt install --assume-yes ca-certificates
+sudo apt install --assume-yes binutils
+sudo apt install --assume-yes bc
+sudo apt install --assume-yes jq
+sudo apt install --assume-yes tmux
+sudo apt install --assume-yes netcat
+sudo apt install --assume-yes lib32gcc-s1
+sudo apt install --assume-yes lib32stdc++6
+sudo apt install --assume-yes libsdl2-2.0-0:i386
+sudo apt install --assume-yes steamcmd
+sudo apt install --assume-yes libtinfo5:i386
+sudo apt install --assume-yes openjdk-17-jre
+sudo apt install --assume-yes openjdk-16-jre
+sudo apt install --assume-yes openjdk-11-jre
+sudo apt install --assume-yes lib32z1
+sudo apt install --assume-yes libcurl4-gnutls-dev:i386
+sudo apt install  libmariadb3
+sudo apt-get install --assume-yes build-essential cmake git libjson-c-dev libwebsockets-dev
 
 # Clona el repositorio ttyd y compila e instala
 git clone https://github.com/tsl0922/ttyd.git
