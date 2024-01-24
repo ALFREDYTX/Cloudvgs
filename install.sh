@@ -1,39 +1,39 @@
 #!/bin/bash
 
 # Actualiza el sistema
-apt update && apt upgrade
+apt update && apt -y upgrade
 
 # Instala los paquetes necesarios
 sudo add-apt-repository multiverse
 sudo dpkg --add-architecture i386;
 sudo apt update
-sudo apt install curl
-sudo apt install wget
-sudo apt install file
-sudo apt install tar
-sudo apt install bzip2
-sudo apt install gzip
-sudo apt install unzip
-sudo apt install bsdmainutils
-sudo apt install python3
-sudo apt install util-linux
-sudo apt install ca-certificates
-sudo apt install binutils
-sudo apt install bc
-sudo apt install jq
-sudo apt install tmux
-sudo apt install netcat
-sudo apt install lib32gcc-s1
-sudo apt install lib32stdc++6
-sudo apt install libsdl2-2.0-0:i386
-sudo apt install steamcmd
-sudo apt install libtinfo5:i386
-sudo apt install openjdk-17-jre
-sudo apt install openjdk-16-jre
-sudo apt install openjdk-11-jre
-sudo apt install lib32z1
-sudo apt install libcurl4-gnutls-dev:i386
-sudo apt install libmariadb3
+sudo apt install -y curl
+sudo apt install -y wget
+sudo apt install -y file
+sudo apt install -y tar
+sudo apt install -y bzip2
+sudo apt install -y gzip
+sudo apt install -y unzip
+sudo apt install -y bsdmainutils
+sudo apt install -y python3
+sudo apt install -y util-linux
+sudo apt install -y ca-certificates
+sudo apt install -y binutils
+sudo apt install -y bc
+sudo apt install -y jq
+sudo apt install -y tmux
+sudo apt install -y netcat
+sudo apt install -y lib32gcc-s1
+sudo apt install -y lib32stdc++6
+sudo apt install -y libsdl2-2.0-0:i386
+sudo apt install -y steamcmd
+sudo apt install -y libtinfo5:i386
+sudo apt install -y openjdk-17-jre
+sudo apt install -y openjdk-16-jre
+sudo apt install -y openjdk-11-jre
+sudo apt install -y lib32z1
+sudo apt install -y libcurl4-gnutls-dev:i386
+sudo apt install -y libmariadb3
 sudo apt-get install -y build-essential cmake git libjson-c-dev libwebsockets-dev
 
 # Clona el repositorio ttyd y compila e instala
