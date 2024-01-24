@@ -53,4 +53,3 @@ wget -O linuxgsm.sh https://linuxgsm.sh && chmod +x linuxgsm.sh && bash linuxgsm
 wget https://raw.githubusercontent.com/ALFREDYTX/Cloudvgs/main/install1.sh
 wget https://raw.githubusercontent.com/ALFREDYTX/Cloudvgs/main/start_console.sh
 chmod +x install1.sh
-./install1.sh "$1"
