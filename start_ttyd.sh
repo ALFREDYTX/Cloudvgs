@@ -1,1 +1,1 @@
-ttyd -W bash -e ./start_console.sh "$USER"
+ttyd -W bash -e ./start_console.sh
