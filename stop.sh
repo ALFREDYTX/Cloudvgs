@@ -1,3 +1,3 @@
 su - minecraft <<EOF
-screen -S minecraft-server -X stuff "stop$(printf \\r)"
+screen -S name-server -X stuff "stop$(printf \\r)"
 EOF
