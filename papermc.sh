@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Verificar privilegios de superusuario
+if [ "$EUID" -ne 0 ]; then
+    echo "Este script debe ejecutarse con privilegios de superusuario (sudo)."
+    exit 1
+fi
+
 # Actualizar e instalar dependencias
 apt --assume-yes update && apt --assume-yes upgrade
 apt install --assume-yes screen
@@ -126,5 +132,11 @@ echo "$SERVICE_CONTENT" | sudo tee "$SERVICE_FILE" > /dev/null
 
 # Notifica al usuario que la operación se completó
 echo "El archivo de servicio ha sido creado con éxito en $SERVICE_FILE."
+
+# Reinicia el servicio
+sudo systemctl daemon-reload
+
+# Reinicia el servicio ttyd
+sudo systemctl restart ttyd
 
 su - $username
