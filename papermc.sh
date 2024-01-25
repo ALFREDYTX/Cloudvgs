@@ -7,6 +7,10 @@ apt install --assume-yes openjdk-11-jre-headless
 apt install --assume-yes openjdk-8-jre-headless
 apt install --assume-yes jq
 apt install --assume-yes curl
+curl https://raw.githubusercontent.com/ALFREDYTX/Cloudvgs/main/start.sh --output /start.sh
+curl https://raw.githubusercontent.com/ALFREDYTX/Cloudvgs/main/stop.sh --output /stop.sh
+chmod +x /start.sh
+chmod +x /stop.sh
 
 # Solicitar el nombre del usuario
 read -p "Ingrese el nombre del usuario: " username
@@ -69,5 +73,3 @@ else
 fi
 
 su - $username
-#screen -dmS minecraft-server java -Xms512M -Xmx1G -jar server.jar nogui
-#ttyd -W -p 8080 screen -x minecraft-server
