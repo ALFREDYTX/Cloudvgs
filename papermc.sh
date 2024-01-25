@@ -23,7 +23,7 @@ curl -s https://raw.githubusercontent.com/ALFREDYTX/Cloudvgs/main/start.sh --out
 read -p "Ingrese el nombre del usuario: " username
 
 # Solicitar el nombre del usuario
-read -p "Ingrese la cantidad de ram maxima: " ram
+read -p "Ingrese la cantidad de ram maxima (1G): " ram
 
 # Agregar usuario interactivo
 sudo useradd $username
