@@ -1,19 +1,18 @@
-sudo apt --assume-yes update && sudo --assume-yes apt upgrade
-sudo apt install --assume-yes screen
-sudo apt install --assume-yes ttyd  
-sudo apt install --assume-yes openjdk-17-jre-headless
-sudo apt install --assume-yes openjdk-16-jre-headless
-sudo apt install --assume-yes openjdk-11-jre-headless
-sudo apt install --assume-yes openjdk-8-jre-headless
-sudo apt install --assume-yes jq
-sudo apt install --assume-yes curl
+apt --assume-yes update && apt --assume-yes upgrade
+apt install --assume-yes screen
+apt install --assume-yes ttyd  
+apt install --assume-yes openjdk-17-jre-headless
+apt install --assume-yes openjdk-16-jre-headless
+apt install --assume-yes openjdk-11-jre-headless
+apt install --assume-yes openjdk-8-jre-headless
+apt install --assume-yes jq
+apt install --assume-yes curl
 
 # Solicitar el nombre del usuario
-read -p "Ingrese la versión de Minecraft: " version
 read -p "Ingrese el nombre del usuario: " username
 
 # Agregar usuario interactivo
-sudo adduser $username
+sudo useradd $username
 
 # Crear el directorio raíz del usuario
 sudo mkdir /home/$username
@@ -24,12 +23,12 @@ sudo chown $username:$username /home/$username
 # Establecer la contraseña de manera no interactiva
 echo "$username:12345" | sudo chpasswd
 
-su - $username << EOF
+read -p "Ingrese la versión de Minecraft: " version
 
 PROJECT=paper
 MINECRAFT_VERSION=$version
 
-# Verificar si la versión especificada existe
+# Verificar si la versión especificada existeEOF
 VER_EXISTS=$(curl -s https://api.papermc.io/v2/projects/${PROJECT} | jq -r --arg VERSION $MINECRAFT_VERSION '.versions[] | contains($VERSION)' | grep -m1 true)
 LATEST_VERSION=$(curl -s https://api.papermc.io/v2/projects/${PROJECT} | jq -r '.versions' | jq -r '.[-1]')
 
@@ -60,7 +59,7 @@ echo -e "JAR Name of Build: ${JAR_NAME}"
 DOWNLOAD_URL=https://api.papermc.io/v2/projects/${PROJECT}/versions/${MINECRAFT_VERSION}/builds/${BUILD_NUMBER}/downloads/${JAR_NAME}
 
 # Descargar el archivo JAR
-curl -s ${DOWNLOAD_URL} --output server.jar
+curl -s ${DOWNLOAD_URL} --output /home/$username/server.jar
 
 if [ $? -eq 0 ]; then
     echo "Download successful"
@@ -69,14 +68,6 @@ else
     exit 1
 fi
 
-screen -dmS minecraft-server java -Xms512M -Xmx1G -jar server.jar nogui
-ttyd -W -p 8080 screen -x minecraft-server
-
-#EOF
-
-# Verificar si se produjo un error durante la ejecución del script
-if [ $? -eq 0 ]; then
-    echo "Script executed successfully"
-else
-    echo "Error: Script execution failed. Please review the logs for more information."
-fi
+su - $username
+#screen -dmS minecraft-server java -Xms512M -Xmx1G -jar server.jar nogui
+#ttyd -W -p 8080 screen -x minecraft-server
