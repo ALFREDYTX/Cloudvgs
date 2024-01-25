@@ -19,11 +19,12 @@ apt install --assume-yes curl
 curl -s https://raw.githubusercontent.com/ALFREDYTX/Cloudvgs/main/stop.sh --output /stop.sh
 curl -s https://raw.githubusercontent.com/ALFREDYTX/Cloudvgs/main/start.sh --output /start.sh
 
-# Solicitar el nombre del usuario
-read -p "Ingrese el nombre del usuario: " username
+# Establecer permisos
+chmod +x /stop.sh
+chmod +x /start.sh
 
 # Solicitar el nombre del usuario
-read -p "Ingrese la cantidad de ram maxima (1G): " ram
+read -p "Ingrese el nombre del usuario: " username
 
 # Agregar usuario interactivo
 sudo useradd $username
@@ -54,7 +55,9 @@ sed -i "s/user/$username/g" "$STOP_SCRIPT"
 # Reemplazar "name-server" con el valor de $username, "command-start" con el valor de "java -Xms512M -Xmx${ram} -jar server.jar nogui" y "user" con el valor de $username en start.sh
 sed -i "s/name-server/$username/g" "$START_SCRIPT"
 sed -i "s/user/$username/g" "$START_SCRIPT"
-sed -i "s/command-start/java -Xms512M -Xmx${ram} -jar server.jar nogui/g" ""
+# Solicitar el nombre del usuario
+read -p "Ingrese la cantidad de ram maxima (1G): " ram
+sed -i "s/command-start/java -Xms512M -Xmx${ram} -jar server.jar nogui/g" "$START_SCRIPT"
 
 echo "Los archivos stop.sh y start.sh han sido modificados exitosamente."
 
