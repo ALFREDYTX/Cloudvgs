@@ -106,32 +106,31 @@ fi
 
 SERVICE_FILE="/etc/systemd/system/ttyd.service"
 
-# Verifica si el usuario actual tiene permisos de escritura en el archivo de servicio
-if [ ! -w "$SERVICE_FILE" ]; then
-    echo "No tienes permisos para escribir en $SERVICE_FILE. Ejecuta el script con privilegios de superusuario."
+# Verifica si el usuario actual tiene permisos de escritura en el directorio
+if [ ! -w "$(dirname "$SERVICE_FILE")" ]; then
+    echo "No tienes permisos para escribir en $(dirname "$SERVICE_FILE")."
     exit 1
 fi
 
-# Contenido del archivo de servicio
-SERVICE_CONTENT="[Unit]
-Description=$username Server
-
-[Service]
-Type=simple
-User=$username
-WorkingDirectory=/home/$username
-ExecStart=/usr/bin/ttyd -W -p 8080 /usr/bin/screen -x $username
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-"
-
-# Escribe el contenido en el archivo de servicio
-echo "$SERVICE_CONTENT" | sudo tee "$SERVICE_FILE" > /dev/null
-
-# Notifica al usuario que la operación se completó
-echo "El archivo de servicio ha sido creado con éxito en $SERVICE_FILE."
+# Verifica si el archivo de servicio ya existe
+if [ ! -e "$SERVICE_FILE" ]; then
+    # Crea el archivo de servicio si no existe
+    echo "[Unit]" > "$SERVICE_FILE"
+    echo "Description=$username Server" >> "$SERVICE_FILE"
+    echo "" >> "$SERVICE_FILE"
+    echo "[Service]" >> "$SERVICE_FILE"
+    echo "Type=simple" >> "$SERVICE_FILE"
+    echo "User=$username" >> "$SERVICE_FILE"
+    echo "WorkingDirectory=/home/$username" >> "$SERVICE_FILE"
+    echo "ExecStart=/usr/bin/ttyd -W -p 8080 /usr/bin/screen -x $username" >> "$SERVICE_FILE"
+    echo "Restart=always" >> "$SERVICE_FILE"
+    echo "" >> "$SERVICE_FILE"
+    echo "[Install]" >> "$SERVICE_FILE"
+    echo "WantedBy=multi-user.target" >> "$SERVICE_FILE"
+    echo "Archivo $SERVICE_FILE creado exitosamente."
+else
+    echo "El archivo $SERVICE_FILE ya existe. No es necesario crear uno nuevo."
+fi
 
 # Reinicia el servicio
 sudo systemctl daemon-reload
