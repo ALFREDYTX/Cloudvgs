@@ -64,9 +64,7 @@ sed -i "s/command-start/./ShooterGameServer $mapa?SessionName=$username?Port=777
 echo "Los archivos stop.sh y start.sh han sido modificados exitosamente."
 
 # Actualizar e instalar dependencias
-su - $username <<EOF
-steamcmd +force_install_dir . +login anonymous +app_update 376030 +quit
-EOF
+steamcmd +force_install_dir /home/$username +login anonymous +app_update 376030 +quit
 
 # Crear el archivo de servicio
 SERVICE_FILE="/etc/systemd/system/ttyd.service"
