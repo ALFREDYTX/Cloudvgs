@@ -10,9 +10,7 @@ fi
 apt --assume-yes update && apt --assume-yes upgrade
 apt install --assume-yes screen
 apt install --assume-yes ttyd  
-sudo add-apt-repository --assume-yes multiverse
-sudo dpkg --assume-yes --add-architecture i386
-sudo apt --assume-yes update
+sudo add-apt-repository multiverse; sudo dpkg --add-architecture i386; sudo --assume-yes apt update
 sudo apt install --assume-yes steamcmd
 apt install --assume-yes jq
 apt install --assume-yes curl
