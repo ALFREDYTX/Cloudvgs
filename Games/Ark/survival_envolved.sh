@@ -16,6 +16,7 @@ fi
 apt --assume-yes update && apt --assume-yes upgrade || handle_error "Fallo al actualizar e instalar dependencias"
 apt install --assume-yes screen || handle_error "Fallo al instalar screen"
 apt install --assume-yes ttyd || handle_error "Fallo al instalar ttyd"
+apt install --assume-yes software-properties-common
 sudo add-apt-repository multiverse; sudo dpkg --add-architecture i386; sudo apt update
 sudo apt install --assume-yes steamcmd || handle_error "Fallo al instalar steamcmd"
 apt install --assume-yes jq || handle_error "Fallo al instalar jq"
@@ -71,7 +72,6 @@ echo "Los archivos stop.sh y start.sh han sido modificados exitosamente."
 
 # Actualizar e instalar dependencias
 steamcmd +force_install_dir /home/$username +login anonymous +app_update 376030 +quit || handle_error "Fallo al actualizar e instalar dependencias de SteamCMD"
-
 # Crear el archivo de servicio
 SERVICE_FILE="/etc/systemd/system/ttyd.service"
 
